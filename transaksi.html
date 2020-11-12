@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIPM Dealer Suzuki</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
+
+    <!-- The core Firebase JS Database -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
+
+</head>
+
+<body id="page-top" onload="transaksi.tampilData()">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #182952;">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SIPM Dealer Suzuki</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Menu
+            </div>
+
+            <!-- Nav Item - Transaksi Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi"
+                    aria-expanded="true" aria-controls="collapseTransaksi">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Transaksi</span>
+                </a>
+                <div id="collapseTransaksi" class="collapse" aria-labelledby="headingTransaksi"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Transaksi:</h6>
+                        <a class="collapse-item" href="transaksi.html">Laporan Penjualan</a>
+                        <a class="collapse-item" id="tambah_transaksi" onclick="transaksi.ambilDataTerakhir()">Tambah
+                            Transaksi</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Warehouse Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWarehouse"
+                    aria-expanded="true" aria-controls="collapseWarehouse">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Warehouse</span>
+                </a>
+                <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Warehouse:</h6>
+                        <a class="collapse-item" href="warehouse.html">Laporan Unit</a>
+                        <a class="collapse-item" href="warehouse.html" id="tambah_unit">Tambah
+                            Unit</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pembelian Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePembelian"
+                    aria-expanded="true" aria-controls="collapsePembelian">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Pembelian</span>
+                </a>
+                <div id="collapsePembelian" class="collapse" aria-labelledby="headingPembelian"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Pembelian:</h6>
+                        <a class="collapse-item" href="pembelian.html">Laporan Pembelian</a>
+                        <a class="collapse-item" href="pembelian.html" id="tambah_pembelian">Tambah Pembelian</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Piutang Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePiutang"
+                    aria-expanded="true" aria-controls="collapsePiutang">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Piutang</span>
+                </a>
+                <div id="collapsePiutang" class="collapse" aria-labelledby="headingPiutang"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Piutang:</h6>
+                        <a class="collapse-item" href="piutang.html">Laporan Piutang</a>
+                        <a class="collapse-item" href="piutang.html" id="tambah_piutang">Tambah
+                            Data Piutang</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" onclick="transaksi.seleksi4cetakPOunit()" style="cursor: pointer;">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Cetak PO Unit</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+                    style="background-color: #182952;">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="show-useremail" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <i class="fa fa-user img-circle"></i>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-12">
+
+                                <div class="card">
+                                    <div class="card-header text-white bg-dark">
+                                        <h3 class="card-title">Laporan Penjualan</h3>
+                                        <div class="input-group col-md-3 float-right">
+                                            <input type="date" id="cariData" class="form-control bg-light border small">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button"
+                                                    onclick="transaksi.tampilData()">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <table id="tabel-transaksi" class="table table-bordered" style="color: black;"">
+                                            <thead class=" thead-dark text-center">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Tanggal Transaksi</th>
+                                                <th>Jenis Penjualan</th>
+                                                <th>Nama Customer</th>
+                                                <th>Leasing</th>
+                                                <th>Unit Type</th>
+                                                <th>Jumlah Unit</th>
+                                                <th>Payment</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody style="background-color: #f6f6f6;" class="text-center">
+                                                <!-- isinya nanti JS buat get ama show data -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2019</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" onclick="auth.logOut()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add -->
+    <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="ModalAddLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalCetakLabel">Tambah Transaksi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="hidden" id="id" disabled>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tanggal Transaksi</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="date" id="tgl_transaksi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Jenis Penjualan</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="penjualan_jenis">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Nama Customer</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="nama_cust">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Alamat Customer</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="alamat_cust">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Leasing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="leasing">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Unit Type</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="unit_type">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Jumlah Unit</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="jml_unit">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Harga OTR</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="hargaOTR">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Harga TDP</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="hargaTDP">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">UM Murni</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="um_murni">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Payment</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="payment">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Sub Leasing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="sub_leasing">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">SPF Transaksi</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="SPF_transaksi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Pencairan Leasing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="pencairan_leasing">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Nomor Polisi</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="no_polisi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Note Penjualan</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="note_penjualan">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary"
+                        onclick="transaksi.addData_Proses();transaksi.cetakData_Tampil();">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Update -->
+    <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="ModalUpdateLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalUpdateLabel">Update Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="hidden" id="show_id" disabled>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tanggal Transaksi</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="date" id="show_tgl_transaksi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Jenis Penjualan</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_penjualan_jenis">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Nama Customer</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_nama_cust">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Alamat Customer</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_alamat_cust">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Leasing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_leasing">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Unit Type</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_unit_type">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Jumlah Unit</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="show_jml_unit">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Harga OTR</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="show_hargaOTR">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Harga TDP</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="show_hargaTDP">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">UM Murni</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="show_um_murni">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Payment</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="show_payment">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Sub Leasing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="show_sub_leasing">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">SPF Transaksi</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_SPF_transaksi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Pencairan Leasing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="show_pencairan_leasing">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Nomor Polisi</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_no_polisi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Note Penjualan</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="show_note_penjualan">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary"
+                        onclick="transaksi.updateData_Proses()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Hapus Data -->
+    <div class="modal fade" id="ModalDel" tabindex="-1" role="dialog" aria-labelledby="ModalDelLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalHapusLabel">Konfirmasi Hapus Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" onclick="transaksi.delData_Proses()">Hapus
+                        Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detail -->
+    <div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="ModalDetailLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalDetailLabel">Detail Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <label id="detail_id" hidden>
+                            <tr>
+                                <td><label>Tanggal Transaksi</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_tgl_transaksi"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Jenis Penjualan</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_penjualan_jenis"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Nama Customer</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_nama_cust"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Alamat Customer</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_alamat_cust"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Leasing</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_leasing"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Unit Type</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_unit_type"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Jumlah Unit</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_jml_unit"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Harga OTR</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_hargaOTR"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Harga TDP</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_hargaTDP"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>UM Murni</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_um_murni"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Payment</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_payment"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Sub Leasing</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_sub_leasing"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Piutang UM</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_piutang_um"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Harga Leasing</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_harga_leasing"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>SPF Transaksi</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_SPF_transaksi"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Pencairan Leasing</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_pencairan_leasing"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Piutang Leasing</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_piutang_leasing"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Nomor Polisi</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_no_polisi"></label></td>
+                            </tr>
+                            <tr>
+                                <td><label>Note Penjualan</label></td>
+                                <td><label> : </label></td>
+                                <td><label id="detail_note_penjualan"></label></td>
+                            </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCetak"
+                        data-dismiss="modal">Cetak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cetak -->
+    <div class="modal fade" id="ModalCetak" tabindex="-1" role="dialog" aria-labelledby="ModalCetakLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalCetakLabel">Cetak Data</h5>
+                    <a class="close" aria-label="Close" href="transaksi.html">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                </div>
+                <div class="modal-body" id="modal_cetak">
+                    <h4 class="float-right">PELUNASAN</h4>
+                    <h4>SUZUKI KATANG</h4>
+                    <h6>JL.Pamenang No.19 Ngasem Kab.Kediri</h6>
+                    <br>
+                    <h4 class="text-center">KWITANSI</h4>
+                    <table>
+                        <tr>
+                            <td><label>Telah terima dari</label></td>
+                            <td><label> : </label></td>
+                            <td><label></label></td>
+                        </tr>
+                        <tr>
+                            <td><label>Nama Konsumen</label></td>
+                            <td><label>:&nbsp;</label></td>
+                            <td><label id="cetak_nama_cust"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label>Alamat</label></td>
+                            <td><label>:&nbsp;</label></td>
+                            <td><label id="cetak_alamat_cust"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label>Terbilang</label></td>
+                            <td><label> : </label></td>
+                            <td><label></label></td>
+                        </tr>
+                        <tr>
+                            <td><label>Untuk Pembayaran</label></td>
+                            <td><label> : </label></td>
+                            <td width="500"><label>Merk
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    : </label></td>
+                            <td><label>Rangka</label></td>
+                            <td><label> : </label></td>
+                            <td><label></label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label>Type
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    :&nbsp;</label><label id="cetak_unit_type"></label></td>
+                            <td><label>No. Mesin</label></td>
+                            <td><label> : </label></td>
+                            <td><label></label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label>Harga OTR :&nbsp;</label><label id="cetak_hargaOTR"></label></td>
+                            <td><label>Warna</label></td>
+                            <td><label>:</label></td>
+                            <td><label></label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label>Uang Muka :&nbsp;</label><label id="cetak_um_murni"></label></td>
+                            <td><label>Tahun</label></td>
+                            <td><label>:</label></td>
+                            <td><label></label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label>BPKB A.n
+                                    &nbsp;&nbsp;
+                                    : </label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label>Kediri,&nbsp;</label><label id="cetak_tgl_transaksi"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label>Jumlah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                                </label><label id="cetak_payment"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td><label></label></td>
+                            <td width="150"><label></label></td>
+                            <td><label>W. Dian Mumpuni</label></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" href="transaksi.html">Batal</a>
+                    <button type="button" class="btn btn-primary"
+                        onclick="transaksi.cetakData('modal_cetak')">Cetak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Error -->
+    <div class="modal fade" id="ModalError" tabindex="-1" role="dialog" aria-labelledby="ModalErrorLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalErrorLabel">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6>Hanya Sales Counter yang dapat melakukan aksi ini.</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript -->
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages -->
+    <script src="assets/js/sb-admin-2.min.js"></script>
+
+    <script src="javascript/firebase/firebase.js"></script>
+    <script src="javascript/auth/login.js"></script>
+    <script src="javascript/main/transaksi.js"></script>
+
+    <script>
+        var firebase = app_firebase;
+
+        (function () {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (!user) {
+                    window.location.href = "login.html";
+                }
+
+                var email;
+
+                if (user != null) {
+                    document.getElementById("show-useremail").innerHTML = user.email;
+                }
+            })
+        })()
+    </script>
+
+</body>
+
+</html>
